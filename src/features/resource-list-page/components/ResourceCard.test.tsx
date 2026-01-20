@@ -101,7 +101,7 @@ describe("ResourceCard", () => {
 			screen.getByRole("heading", { name: /testing react components/i }),
 		);
 
-		expect(navigate).toHaveBeenCalled();
+		expect(navigate).toHaveBeenCalledWith("/resource/123");
 	});
 
 	it("should not trigger navigation when external link is clicked", async () => {

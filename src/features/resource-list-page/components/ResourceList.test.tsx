@@ -1,9 +1,27 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import { ResourceList } from "./ResourceList";
 import type { Resource } from "../../../api/resources/resources.types";
+
+const navigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+	const actual =
+		await vi.importActual<typeof import("react-router-dom")>(
+			"react-router-dom",
+		);
+
+	return {
+		...actual,
+		useNavigate: () => navigate,
+	};
+});
+
+beforeEach(() => {
+	navigate.mockClear();
+});
 
 interface RenderOptions {
 	resources?: Resource[];
@@ -67,12 +85,12 @@ describe("ResourceList", () => {
 		expect(resource).toBeInTheDocument();
 	});
 
-	it("should allow user interaction with a resource card", async () => {
+	it("should navigate to resource detail when card is clicked", async () => {
 		const { user } = renderResourceList();
 
 		const resource = screen.getByText(/resource one/i);
 		await user.click(resource);
 
-		expect(resource).toBeInTheDocument();
+		expect(navigate).toHaveBeenCalledWith("/resource/1");
 	});
 });

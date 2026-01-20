@@ -14,7 +14,7 @@ export const FILTER_OPTIONS = [
 		label: "Skill Levels",
 		options: ["Beginner", "Intermediate", "Expert"],
 	},
-];
+] as const;
 
 export const RESOURCE_TYPE_MAP: Record<string, ResourceType> = {
 	Article: "article",

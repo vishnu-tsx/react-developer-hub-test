@@ -28,9 +28,9 @@ const renderResourceDetailPage = (resourceId = "1") => {
 		user,
 		...render(
 			<QueryClientProvider client={queryClient}>
-				<MemoryRouter initialEntries={[`/resources/${resourceId}`]}>
+				<MemoryRouter initialEntries={[`/resource/${resourceId}`]}>
 					<Routes>
-						<Route path="/resources/:id" element={<ResourceDetailPage />} />
+						<Route path="/resource/:id" element={<ResourceDetailPage />} />
 					</Routes>
 				</MemoryRouter>
 			</QueryClientProvider>,
