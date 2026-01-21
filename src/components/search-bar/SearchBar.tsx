@@ -22,15 +22,15 @@ export const SearchBar = ({
 	const searchQuery =
 		controlledValue !== undefined ? controlledValue : internalValue;
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const newValue = event.target.value;
+	const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const updatedSearchQuery = event.target.value;
 		if (controlledValue === undefined) {
-			setInternalValue(newValue);
+			setInternalValue(updatedSearchQuery);
 		}
-		onChange?.(newValue);
+		onChange?.(updatedSearchQuery);
 	};
 
-	const handleClear = () => {
+	const handleClearSearch = () => {
 		if (controlledValue === undefined) {
 			setInternalValue("");
 		}
@@ -56,7 +56,7 @@ export const SearchBar = ({
 					className="pl-10 pr-10 bg-white w-96"
 					autoComplete="off"
 					value={searchQuery}
-					onChange={handleChange}
+					onChange={handleSearchInputChange}
 				/>
 
 				{showClearButton && searchQuery && (
@@ -66,7 +66,7 @@ export const SearchBar = ({
 						size="sm"
 						className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 p-0 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded-full"
 						aria-label="Clear search"
-						onClick={handleClear}
+						onClick={handleClearSearch}
 					>
 						<CircleX className="w-4 h-4" />
 					</Button>

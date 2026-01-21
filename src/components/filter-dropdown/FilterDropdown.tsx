@@ -47,12 +47,12 @@ export const FilterDropdown = ({
 		};
 	}, [isOpen]);
 
-	const handleToggleOption = (option: string) => {
-		const newSelection = selectedOptions.includes(option)
-			? selectedOptions.filter((selectedOption) => selectedOption !== option)
-			: [...selectedOptions, option];
+	const handleToggleOption = (filterOption: string) => {
+		const updatedSelection = selectedOptions.includes(filterOption)
+			? selectedOptions.filter((selectedOption) => selectedOption !== filterOption)
+			: [...selectedOptions, filterOption];
 
-		onSelectionChange(newSelection);
+		onSelectionChange(updatedSelection);
 	};
 
 	return (
